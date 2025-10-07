@@ -48,16 +48,6 @@
 			path = dipirogovPW2;
 			sourceTree = "<group>";
 		};
-		B85403E62E94C16C0017992D /* dipirogovPW2Tests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = dipirogovPW2Tests;
-			sourceTree = "<group>";
-		};
-		B85403F02E94C16C0017992D /* dipirogovPW2UITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = dipirogovPW2UITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				B85403CF2E94C16B0017992D /* dipirogovPW2 */,
-				B85403E62E94C16C0017992D /* dipirogovPW2Tests */,
-				B85403F02E94C16C0017992D /* dipirogovPW2UITests */,
 				B85403CE2E94C16B0017992D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -143,9 +131,6 @@
 			dependencies = (
 				B85403E52E94C16C0017992D /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				B85403E62E94C16C0017992D /* dipirogovPW2Tests */,
-			);
 			name = dipirogovPW2Tests;
 			packageProductDependencies = (
 			);
@@ -165,9 +150,6 @@
 			);
 			dependencies = (
 				B85403EF2E94C16C0017992D /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				B85403F02E94C16C0017992D /* dipirogovPW2UITests */,
 			);
 			name = dipirogovPW2UITests;
 			packageProductDependencies = (
@@ -293,9 +275,9 @@
 				INFOPLIST_FILE = dipirogovPW2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,9 +302,9 @@
 				INFOPLIST_FILE = dipirogovPW2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
