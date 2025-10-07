@@ -1,19 +1,104 @@
-//
-//  ViewController.swift
-//  dipirogovPW2
-//
-//  Created by Даниил Пирогов on 06.10.25.
-//
-
 import UIKit
 
 final class WishMakerViewController: UIViewController {
-
+    enum Constants {
+    static let titleFontSize: CGFloat = 30
+    static let titleLeadingDist: CGFloat = 20
+    static let titleTopDist: CGFloat = 30
+    static let descFontSize: CGFloat = 12
+    static let descLeadingDist: CGFloat = 20
+    static let descTopDist: CGFloat = 20
+    static let sliderMin: Double = 0
+    static let sliderMax: Double = 1
+    static let red: String = "Red"
+    static let green: String = "Green"
+    static let blue: String = "Blue"
+    static let stackRadius: CGFloat = 20
+    static let stackBottom: CGFloat = -40
+    static let stackLeading: CGFloat = 20
+    }
+    
+    var backColor = ColorChanger()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
+        ConfigureUI()
+    }
+    
+    private func ConfigureUI() {
+        ConfigureColor()
+        ConfigureTitle()
+        configureSliders()
+    }
+    
+    private func ConfigureColor() {
+        view.backgroundColor = backColor.getColor()
+    }
+    
+    private func ConfigureTitle() {
+        let labelTitle = UILabel()
+        labelTitle.text = "Wish Maker"
+        labelTitle.translatesAutoresizingMaskIntoConstraints = false
+        labelTitle.font = .systemFont(ofSize: Constants.titleFontSize, weight: .bold)
+        labelTitle.textColor = .magenta
+        view.addSubview(labelTitle)
+        ConfigureDesc(below: labelTitle)
+
+        NSLayoutConstraint.activate([
+            labelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            labelTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.titleLeadingDist),
+            labelTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.titleTopDist)
+        ])
     }
 
+    private func ConfigureDesc(below titleLabel: UILabel) {
+        let labelDesc = UILabel()
+        labelDesc.text = "But remember: The main performer of your dreams is you"
+        labelDesc.translatesAutoresizingMaskIntoConstraints = false
+        labelDesc.font = .systemFont(ofSize: Constants.descFontSize)
+        labelDesc.textColor = .purple
+        view.addSubview(labelDesc)
 
+        NSLayoutConstraint.activate([
+            labelDesc.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            labelDesc.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.descLeadingDist),
+            labelDesc.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.descTopDist)
+        ])
+    }
+    
+    
+    private func configureSliders() {
+    let stack = UIStackView()
+    stack.translatesAutoresizingMaskIntoConstraints = false
+    stack.axis = .vertical
+    view.addSubview(stack)
+    stack.layer.cornerRadius = Constants.stackRadius
+    stack.clipsToBounds = true
+    let sliderRed = CustomSlider(title: Constants.red, min: Constants.sliderMin, max: Constants.sliderMax)
+    let sliderGreen = CustomSlider(title: Constants.green, min: Constants.sliderMin, max: Constants.sliderMax)
+    let sliderBlue = CustomSlider(title: Constants.blue, min: Constants.sliderMin, max: Constants.sliderMax)
+    for slider in [sliderRed, sliderGreen, sliderBlue] {
+    stack.addArrangedSubview(slider)
+    }
+    NSLayoutConstraint.activate([
+    stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+    stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.stackLeading),
+    stack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.stackBottom)
+    ])
+        
+    sliderRed.valueChanged = { [weak self] value in
+        self?.backColor.changeRed(val: value)
+        self?.ConfigureColor()
+        }
+    sliderBlue.valueChanged = { [weak self] value in
+        self?.backColor.changeBlue(val: value)
+        self?.ConfigureColor()
+        }
+    sliderGreen.valueChanged = { [weak self] value in
+        self?.backColor.changeGreen(val: value)
+        self?.ConfigureColor()
+        }
+    }
+    
 }
-
