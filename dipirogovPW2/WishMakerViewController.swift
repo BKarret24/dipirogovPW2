@@ -22,12 +22,21 @@ final class WishMakerViewController: UIViewController {
     static let stackColorBottom: CGFloat = 20
     static let stackColorLeading: CGFloat = 20
     static let stackColorTrailing: CGFloat = -20
+        
+    static let wishButtonHeight: CGFloat = 40
+    static let wishButtonBottom: CGFloat = 30
+    static let wishButtonSide: CGFloat = 50
+    static let wishButtonText: String = "My wishes"
+    static let wishButtonRadius: CGFloat = 10
+    
+    
     }
     
     private var backColor = ColorChanger()
     private var sliderStack = UIStackView()
     private let hexTextField = UITextField()
     private let randomColorButton = UIButton(type: .system)
+    private let addWishButton: UIButton = UIButton(type: .system)
         
     
     
@@ -39,8 +48,8 @@ final class WishMakerViewController: UIViewController {
     private func ConfigureUI() {
         ConfigureColor()
         ConfigureTitle()
+        configureAddWishButton()
         configureSliders()
-        configureHideButton()
         configureColorTools()
     }
     
@@ -97,7 +106,7 @@ final class WishMakerViewController: UIViewController {
     NSLayoutConstraint.activate([
     stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
     stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.stackLeading),
-    stack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.stackBottom)
+    stack.bottomAnchor.constraint(equalTo: addWishButton.topAnchor, constant: Constants.stackBottom)
     ])
         
     sliderRed.valueChanged = { [weak self] value in
@@ -112,9 +121,10 @@ final class WishMakerViewController: UIViewController {
         self?.backColor.changeGreen(val: value)
         self?.ConfigureColor()
         }
+        configureHideButton(below : sliderStack)
     }
     
-    private func configureHideButton() {
+    private func configureHideButton(below sliders : UIStackView) {
             let button = UIButton(type: .system)
             button.setTitle("Сместить слайдеры", for: .normal)
             button.setTitleColor(.systemBlue, for: .normal)
@@ -124,7 +134,7 @@ final class WishMakerViewController: UIViewController {
             
             NSLayoutConstraint.activate([
                 button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+                button.topAnchor.constraint(equalTo: sliders.bottomAnchor)
             ])
         }
         
@@ -169,4 +179,19 @@ final class WishMakerViewController: UIViewController {
             backColor.setRandom()
             ConfigureColor()
         }
+    private func configureAddWishButton() {
+        view.addSubview(addWishButton)
+        addWishButton.setHeight(Constants.wishButtonHeight)
+        addWishButton.pinBottom(to: view, Constants.wishButtonBottom)
+        addWishButton.pinHorizontal(to: view, Constants.wishButtonSide)
+        addWishButton.backgroundColor = .purple
+        addWishButton.setTitleColor(.magenta, for: .normal)
+        addWishButton.setTitle(Constants.wishButtonText, for: .normal)
+        addWishButton.layer.cornerRadius = Constants.wishButtonRadius
+        addWishButton.addTarget(self, action: #selector(addWishButtonPressed), for: .touchUpInside)
+    }
+    @objc
+    private func addWishButtonPressed() {
+    // this will be done later!
+    }
 }
