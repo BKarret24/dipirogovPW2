@@ -5,11 +5,16 @@ final class AddWishCell: UITableViewCell {
     static let reuseId: String = "AddWishCell"
     
     private enum Constants {
+        
         static let sideOffset: CGFloat = 16
         static let verticalOffset: CGFloat = 10
         static let buttonWidth: CGFloat = 140
         static let elementHeight: CGFloat = 44
         static let cornerRadius: CGFloat = 14
+        static let buttonCornerRadius: CGFloat = 14
+        static let buttonFont : CGFloat = 12
+        static let wishText: String = "Введите желание"
+        static let buttonTitle: String = "Добавить желание"
     }
     
     let wishCellText = UITextField()
@@ -37,16 +42,16 @@ final class AddWishCell: UITableViewCell {
         contentView.layer.cornerRadius = Constants.cornerRadius
         contentView.layer.masksToBounds = true
                 
-        wishCellText.placeholder = "Введите желание"
+        wishCellText.placeholder = Constants.wishText
         wishCellText.borderStyle = .roundedRect
         wishCellText.returnKeyType = .done
         wishCellText.isUserInteractionEnabled = true
                 
-        addCellButton.setTitle("Добавить желание", for: .normal)
-        addCellButton.titleLabel?.font = .systemFont(ofSize: 12, weight: .semibold)
+        addCellButton.setTitle(Constants.buttonTitle, for: .normal)
+        addCellButton.titleLabel?.font = .systemFont(ofSize: Constants.buttonFont, weight: .semibold)
         addCellButton.setTitleColor(.white, for: .normal)
         addCellButton.backgroundColor = .systemPink
-        addCellButton.layer.cornerRadius = 10
+        addCellButton.layer.cornerRadius = Constants.buttonCornerRadius
         addCellButton.addTarget(self, action: #selector(addWishTapped), for: .touchUpInside)
                 
         contentView.addSubview(wishCellText)
