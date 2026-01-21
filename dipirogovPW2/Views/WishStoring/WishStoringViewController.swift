@@ -13,6 +13,9 @@ final class WishStoringViewController: UIViewController {
         static let RedAlertSave: String = "Сохранить"
     }
     
+    var onWishSelected: ((String) -> Void)?
+    var isSelectionMode: Bool = false
+
     private let table : UITableView = UITableView(frame: .zero)
     private var wishArray: [String] = []
     private let defaults = UserDefaults.standard
@@ -25,6 +28,10 @@ final class WishStoringViewController: UIViewController {
             wishArray = stored
         }
         configureTable()
+
+        if isSelectionMode {
+            navigationItem.title = "Choose wish"
+        }
     }
     
     private func configureTable() {
@@ -103,6 +110,13 @@ extension WishStoringViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isSelectionMode {
+            guard indexPath.section == 1 else { return }
+            let wish = wishArray[indexPath.row]
+            onWishSelected?(wish)
+            dismiss(animated: true)
+            return
+        }
         guard indexPath.section == 1,
               let cell = tableView.cellForRow(at: indexPath) as? WrittenWishCell else { return }
         

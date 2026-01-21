@@ -1,6 +1,6 @@
 import UIKit
 
-class ColorChanger {
+final class ColorChanger {
     enum Constants {
         static let redDefault: Double = 0.0
         static let greenDefault: Double = 0.0
@@ -12,27 +12,33 @@ class ColorChanger {
     var redComp: Double
     var greenComp: Double
     var blueComp: Double
+    
+    private(set) var color = UIColor.black
 
     init(redComp: Double = Constants.redDefault, greenComp: Double = Constants.greenDefault, blueComp: Double = Constants.blueDefault) {
         self.redComp = redComp
         self.greenComp = greenComp
         self.blueComp = blueComp
+        updateColor()
     }
 
-    func getColor() -> UIColor {
-        UIColor(red: redComp, green: greenComp, blue: blueComp, alpha: Constants.alphaDefault)
+    private func updateColor() {
+        color = UIColor(red: redComp, green: greenComp, blue: blueComp, alpha: Constants.alphaDefault)
     }
 
     func changeRed(val: Double) {
         redComp = val
+        updateColor()
     }
     
     func changeGreen(val: Double) {
         greenComp = val
+        updateColor()
     }
     
     func changeBlue(val: Double) {
         blueComp = val
+        updateColor()
     }
     
     func setFromHex(_ hex: String) {
@@ -45,12 +51,14 @@ class ColorChanger {
         redComp = Double((rgb & 0xFF0000) >> 16) / 255
         greenComp = Double((rgb & 0x00FF00) >> 8) / 255
         blueComp = Double(rgb & 0x0000FF) / 255
+        updateColor()
     }
 
     func setRandom() {
-            redComp = Double.random(in: Constants.randomRange)
-            greenComp = Double.random(in: Constants.randomRange)
-            blueComp = Double.random(in: Constants.randomRange)
+        redComp = Double.random(in: Constants.randomRange)
+        greenComp = Double.random(in: Constants.randomRange)
+        blueComp = Double.random(in: Constants.randomRange)
+        updateColor()
         }
 }
 
